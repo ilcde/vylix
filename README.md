@@ -23,7 +23,7 @@ Vylix OS is an experimental operating system designed to explore the synergy bet
 ## **🚀 Quick Start**
 
 \# Clone the project  
-git clone \[https://github.com/ilcde/vylix.git\](https://github.com/ilcde/vylix.git)  
+git clone https://github.com/ilcde/vylix.git
 cd vylix
 
 \# Run for ARM64 (Mobile)  
