@@ -48,3 +48,5 @@ Please read our [CONTRIBUTING.md](https://github.com/ilcde/vylix/blob/main/CONTR
 ## **📄 License**
 
 This project is licensed under the MIT License \- see the [LICENSE](https://github.com/ilcde/vylix/blob/main/LICENSE) file for details.
+
+![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Filcde%2Fvylix&label=TOTAL%20VIEWS&countColor=%23263151)
