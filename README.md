@@ -14,12 +14,11 @@ Vylix OS is an experimental operating system designed to explore the synergy bet
 ## **🛠️ Current Development Status**
 
 ✅ **Multi-arch Bootloader** (Multiboot2 for x86, Virt for ARM)
-
 ✅ **Cross-language FFI** (C++ calling Rust)
-
 ✅ **Basic Serial I/O** (UART & I/O Ports)
-
-🛠️ **Physical Memory Manager (PMM)** — *In Active Development* ⏳ **Virtual Memory Manager (VMM)** — *Planned* ⏳ **Preemptive Scheduler** — *Planned*
+🛠️ **Physical Memory Manager (PMM)** — *In Active Development* 
+⏳ **Virtual Memory Manager (VMM)** — *Planned* 
+⏳ **Preemptive Scheduler** — *Planned*
 
 
 ## **🚀 Quick Start**
