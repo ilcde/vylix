@@ -1,0 +1,32 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+            <head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title>
+            <style>
+                body { font-family: 'Times New Roman', serif; font-size: 12pt; }
+                h1 { font-size: 24pt; font-weight: bold; color: #1a202c; }
+                h2 { font-size: 18pt; font-weight: bold; color: #2d3748; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 20px; }
+                h3 { font-size: 14pt; font-weight: bold; color: #4a5568; }
+                code { font-family: 'Courier New', monospace; background: #eee; padding: 2px; }
+                pre { background: #f7fafc; padding: 10px; border: 1px solid #e2e8f0; font-family: 'Courier New', monospace; }
+                table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+                th, td { border: 1px solid #cbd5e0; padding: 8px; text-align: left; }
+                th { background-color: #edf2f7; font-weight: bold; }
+                blockquote { border-left: 4px solid #4299e1; padding-left: 10px; color: #718096; margin-left: 0; }
+            </style>
+            </head><body><pre><code class="language-text"># Build artifacts
+build/
+target/
+*.o
+*.a
+*.so
+*.bin
+*.img
+*.iso
+
+# IDE &amp; OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+</code></pre>
+</body></html>
