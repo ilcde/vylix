@@ -2,28 +2,42 @@
 #![no_main]
 
 /**
- * Vylix OS - Rust Core Component
- * File này chứa các hàm xử lý an toàn mức thấp cho nhân hệ điều hành.
- */
 
-/* * Hàm xử lý lỗi nghiêm trọng (Panic) được gọi từ C++.
- * Chúng ta sử dụng #[no_mangle] để giữ nguyên tên hàm khi liên kết (Link).
- */
+* Vylix OS - Rust Core Component
+
+* This file contains low-level safe handling functions for the operating system kernel.
+
+*/
+
+* * The Panic handler function is called from C++.
+
+* We use #[no_mangle] to keep the function name intact when linking.
+
+*/
 #[no_mangle]
 pub extern "C" fn rust_panic_handler() -> ! {
-    // Trong các giai đoạn tới, chúng ta sẽ lập trình để in thông báo lỗi 
-    // chi tiết ra màn hình UART hoặc Framebuffer tại đây.
-    loop {
-        // Lệnh gợi ý CPU nghỉ ngơi để tránh quá nhiệt trong vòng lặp vô tận
-    }
+
+/ // In the following stages, we will program to print the error message
+
+/ // details to the UART or Framebuffer screen here.
+
+loop {
+
+/ Command to suggest CPU rest to avoid overheating in the infinite loop
+
+}
 }
 
 /**
- * Panic Handler bắt buộc cho môi trường no_std.
- * Hàm này sẽ được gọi khi code Rust xảy ra lỗi runtime (ví dụ: truy cập mảng ngoài phạm vi).
- */
+* Panic Handler is required for the no_std environment.
+
+* This function will be called when Rust code encounters a runtime error (e.g., out-of-scope array access).
+
+*/
 #[panic_handler]
 fn panic(_info: &core::panic::PanicInfo) -> ! {
-    // Gọi hàm panic handler chung của hệ thống
-    rust_panic_handler()
+
+// Call the system's common panic handler function
+
+rust_panic_handler()
 }

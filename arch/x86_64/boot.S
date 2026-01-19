@@ -1,6 +1,6 @@
 /*
  * Vylix OS - x86_64 Bootloader (Multiboot2)
- * Điểm khởi đầu cho phiên bản Desktop
+ * Entry point for the Desktop version
  */
 
 #define MULTIBOOT2_HEADER_MAGIC     0xe85250d6
@@ -14,7 +14,7 @@ header_start:
     .long MULTIBOOT2_ARCHITECTURE_X86
     .long MULTIBOOT2_HEADER_LENGTH
     .long MULTIBOOT2_CHECKSUM
-    /* Tags kết thúc */
+    /* End Tags */
     .short 0
     .short 0
     .long 8
@@ -25,20 +25,20 @@ header_end:
 .type _start, @function
 
 _start:
-    /* Thiết lập Stack cho x86_64 */
+    /* Setup Stack for x86_64 */
     mov $stack_top, %esp
     
-    /* Nhảy vào hàm kmain của C++ */
+    /* Jump to C++ kmain function */
     extern kmain
     call kmain
 
 hang:
-    cli
-1:  hlt
-    jmp 1b
+    cli                      /* Disable interrupts */
+1:  hlt                      /* Halt the CPU */
+    jmp 1b                   /* Infinite loop if halted CPU wakes up */
 
 .section .bss
 .align 16
 stack_bottom:
-.skip 16384 /* 16KB Stack */
+.skip 16384                  /* 16KB Stack Space */
 stack_top:

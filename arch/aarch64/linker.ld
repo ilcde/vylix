@@ -1,44 +1,43 @@
-/* * VYLIX OS - Linker Script cho ARM64
- * Xác định vị trí các thành phần mã nguồn trong RAM khi khởi động
+/*
+ * Vylix OS - ARM64 Bootloader
+ * First instructions executed upon CPU startup for Mobile/ARM64.
  */
 
-ENTRY(_start)
+.section .text.boot
 
-SECTIONS
-{
-    /* QEMU ARM 'virt' board bắt đầu nạp Kernel tại địa chỉ 0x40000000 */
-    . = 0x40000000;
+.global _start
 
-    /* 1. Phần mã lệnh (Code) */
-    .text : {
-        KEEP(*(.text.boot)) /* Đảm bảo code boot không bị trình biên dịch xóa */
-        *(.text .text.*)
-    }
+_start:
+    /* 1. Check Processor ID */
+    mrs     x0, mpidr_el1
+    and     x0, x0, #0xFF        /* Extract the Core ID */
+    cbz     x0, master           /* If Core 0 (primary), proceed to master initialization */
+    b       hang                 /* Other cores enter low-power wait loop */
 
-    /* 2. Phần dữ liệu chỉ đọc (Hằng số, chuỗi chữ) */
-    .rodata : {
-        *(.rodata .rodata.*)
-    }
+master:
+    /* 2. Setup Stack Pointer (SP) for C++ */
+    /* C++ requires a valid stack for local variables and function calls */
+    ldr     x0, =_stack_top
+    mov     sp, x0
 
-    /* 3. Phần dữ liệu có thể ghi (Biến toàn cục đã khởi tạo) */
-    .data : {
-        *(.data .data.*)
-    }
+    /* 3. Clear BSS Section (Uninitialized global variables) */
+    ldr     x0, =_bss_start
+    ldr     x1, =_bss_end
+    sub     x1, x1, x0           /* Calculate BSS size */
+    cbz     x1, run_kernel       /* Skip if BSS size is zero */
 
-    /* 4. Phần dữ liệu chưa khởi tạo (BSS) */
-    .bss : {
-        . = ALIGN(16);
-        _bss_start = .;
-        *(.bss .bss.*)
-        *(COMMON)
-        _bss_end = .;
-    }
+clear_bss:
+    str     xzr, [x0], #8        /* Write zero to memory using xzr register */
+    subs    x1, x1, #8           /* Decrement remaining size */
+    bgt     clear_bss            /* Continue looping if size > 0 */
 
-    /* 5. Thiết lập vùng Stack (Ngăn xếp) cho C++ - Độ lớn 16KB */
-    . = ALIGN(16);
-    . += 0x4000; 
-    _stack_top = .;
+run_kernel:
+    /* 4. Jump to C++ Kernel Entry Point */
+    bl      kmain
 
-    /* Loại bỏ các phần không cần thiết để file OS nhẹ hơn */
-    /DISCARD/ : { *(.comment) *(.gnu*) *(.note*) *(.eh_frame) }
-}
+hang:
+    /* Infinite loop if the Kernel ever exits (unexpected behavior) */
+    wfe                          /* Wait For Event - saves power */
+    b       hang
+
+/* The linker script will define _stack_top, _bss_start, and _bss_end */

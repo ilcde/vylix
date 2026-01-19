@@ -1,42 +1,62 @@
 #include <stdint.h>
 
-/* Khai báo hàm từ Rust */
+/* Declare a function from Rust */
+
 extern "C" {
-    void rust_panic_handler();
+void rust_panic_handler();
+
 }
 
 /**
- * Hàm HAL: Dừng CPU chờ ngắt
- * Giúp code C++ không bị phụ thuộc vào Assembly của từng chip
- */
+
+* HAL function: Stops the CPU waiting for an interrupt
+
+* Helps C++ code not depend on the assembly of each chip
+
+*/
 inline void cpu_halt() {
 #ifdef __aarch64__
-    asm volatile("wfi");
+
+asm volatile("wfi");
+
 #elif defined(__x86_64__)
-    asm volatile("hlt");
+
+asm volatile("hlt");
+
 #endif
+
 }
 
-/* Lưu ý: Địa chỉ UART này chỉ đúng trên ARM QEMU */
-/* Trên x86, chúng ta sẽ cần một phương pháp in khác (I/O Ports) */
+/* Note: This UART address is only correct on ARM QEMU */
+
+/* On x86, we will need a different printing method (I/O Ports) */
+
 volatile uint8_t* UART0 = (uint8_t*)0x09000000;
 
 void print(const char* s) {
 #ifdef __aarch64__
-    while(*s != '\0') {
-        *UART0 = (uint8_t)(*s);
-        s++;
-    }
+
+while(*s != '\0') {
+*UART0 = (uint8_t)(*s);
+
+s++;
+
+}
 #elif defined(__x86_64__)
-    // Tạm thời trên x86 chúng ta chưa có driver UART/Serial
-    // Mình sẽ hướng dẫn bạn viết driver x86 sau
+
+// For now, we don't have a UART/Serial driver on x86
+
+// I will guide you on how to write the x86 driver later
 #endif
+
 }
 
 extern "C" void kmain() {
-    print("Vylix OS is booting...\n");
 
-    while(1) {
-        cpu_halt();
-    }
+print("Vylix OS is booting...\n");
+
+while(1) {
+cpu_halt();
+
+}
 }
