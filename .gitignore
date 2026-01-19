@@ -1,11 +1,12 @@
 build/
-target/
+rust_core/target/
 *.o
 *.a
 *.so
 *.bin
 *.img
 *.iso
+*.elf
 
 # IDE &amp; OS
 .vscode/
