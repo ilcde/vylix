@@ -36,7 +36,7 @@ make ARCH=x86\_64 run
 
 We welcome all kinds of contributions\! Whether you are an expert in Assembly, a C++ enthusiast, or a Rustacean, there's a place for you in Vylix OS.
 
-Please read our [CONTRIBUTING.md](https://www.google.com/search?q=CONTRIBUTING.md) to get started.
+Please read our [CONTRIBUTING.md](https://github.com/ilcde/vylix/blob/main/CONTRIBUTING.md) to get started.
 
 ## **📄 License**
 
