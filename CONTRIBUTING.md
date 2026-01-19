@@ -12,7 +12,7 @@ First off, thank you for considering contributing to Vylix OS\! It's people like
 
 1. **Fork** the repository on GitHub.  
 2. **Clone** your fork locally:  
-   git clone \[https://github.com/ilcde/vylix.git\](https://github.com/ilcde/vylix.git)
+   git clone https://github.com/ilcde/vylix.git
 
 3. **Install Dependencies** (on Kali Linux/Ubuntu):  
    sudo apt install g++-aarch64-linux-gnu g++-x86\_64-linux-gnu qemu-system-arm qemu-system-x86 make  
