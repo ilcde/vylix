@@ -1,0 +1,15 @@
+[package]
+name = "vylix_rust"
+version = "0.1.0"
+edition = "2021"
+authors = ["Nguyen Duc Tue <ilcde>"]
+
+[lib]
+name = "vylix_rust"
+crate-type = ["staticlib"] # Xuất bản thành file .a để C++ link vào
+
+[dependencies]
+
+[profile.release]
+panic = "abort" # Kernel không có cơ chế unwind stack như OS thông thường
+lto = true      # Tối ưu hóa kích thước
