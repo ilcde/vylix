@@ -41,4 +41,4 @@ Please read our [CONTRIBUTING.md](https://github.com/ilcde/vylix/blob/main/CONTR
 
 ## **📄 License**
 
-This project is licensed under the MIT License \- see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
+This project is licensed under the MIT License \- see the [LICENSE](https://github.com/ilcde/vylix/blob/main/LICENSE) file for details.
