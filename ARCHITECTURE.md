@@ -1,16 +1,4 @@
 <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-            <head><meta charset='utf-8'><title>ARCHITECTURE.md</title>
-            <style>
-                body { font-family: 'Times New Roman', serif; font-size: 12pt; }
-                h1 { font-size: 24pt; font-weight: bold; margin-bottom: 20px; }
-                h2 { font-size: 18pt; font-weight: bold; margin-top: 20px; border-bottom: 1px solid #ccc; }
-                code { font-family: 'Courier New', monospace; background: #f0f0f0; padding: 2px 4px; }
-                pre { background: #f5f5f5; padding: 10px; border: 1px solid #ddd; }
-                table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-                th, td { border: 1px solid #bbb; padding: 8px; text-align: left; }
-                th { background-color: #eee; }
-            </style>
-            </head><body><h1>Vylix System Architecture</h1>
 <h2>1. The Low-Level Layer (Assembly)</h2>
 <p>Located in <code>arch/</code>.</p>
 <ul>
